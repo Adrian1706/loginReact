@@ -38,15 +38,42 @@ export function Register() {
     }
 
     return (
-        <div>
-            <h1>Register</h1>
-            <form onSubmit={registrar}>
-                <label htmlFor="correoRegistrar">Correo</label><br />
-                <input type="text" id="correoRegistrar" value={correo} onChange={(e) => setCorreo(e.target.value)}/><br /><br />
-                <label htmlFor="passwordRegistrar">Password</label><br />
-                <input type="password" id="passwordRegistrar" value={password} onChange={(e) => setPassword(e.target.value)}/><br /><br />
-                <button type="submit">Registrar Usuario</button>
-            </form>
+        <div className="container mt-5">
+            <div className="row justify-content-center">
+                <div className="col-md-6">
+                    <div className="card">
+                        <div className="card-header">
+                            <h1 className="text-center">Registro</h1>
+                        </div>
+                        <div className="card-body">
+                            <form onSubmit={registrar}>
+                                <div className="form-group">
+                                    <label htmlFor="correoRegistrar">Correo</label>
+                                    <input
+                                        type="text"
+                                        id="correoRegistrar"
+                                        className="form-control"
+                                        value={correo}
+                                        onChange={(e) => setCorreo(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="passwordRegistrar">Contraseña</label>
+                                    <input
+                                        type="password"
+                                        id="passwordRegistrar"
+                                        className="form-control"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                    />
+                                </div>
+                                <br />
+                                <button type="submit" className="btn btn-primary">Registrar Usuario</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 };
