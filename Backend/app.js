@@ -4,6 +4,7 @@ import versionRoutes from "express-routes-versioning";
 import cors from "cors";
 
 import user from "./routers/user.js";
+import login from "./routers/login.js";
 
 dotenv.config();
 const app = express();
@@ -28,4 +29,12 @@ app.use("/user",
     "1.0.0": user
   })
   
+);
+
+app.use("/login",
+
+  versionRoute({
+    "1.0.0": login
+  })
+
 )

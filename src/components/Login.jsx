@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-export function Register() {
+export function Login() {
     const [correo, setCorreo] = useState("");
     const [password, setPassword] = useState(""); 
 
-    const registrar = async (e) => {
+    const login = async (e) => {
         e.preventDefault();
-        let registrarse = { correo, password };
+        let iniciarSesion = { correo, password };
         
         const requestOptions = {
             method: "POST",
@@ -14,19 +14,19 @@ export function Register() {
                 "Content-Type": "application/json",
                 "Accept-Version": "1.0.0"
             },
-            body: JSON.stringify(registrarse)
+            body: JSON.stringify(iniciarSesion)
         };
         
         try {
-            let res = await fetch("http://127.10.10.10:5000/user", requestOptions);
+            let res = await fetch("http://127.10.10.10:5000/login", requestOptions);
             if (res.ok) {
                 const jotason = await res.json();
                 console.log(jotason);
-                alert("Se agregó el usuario con éxito");
+                alert("Se inicio sesión con éxito");
                 setCorreo("");
                 setPassword("");
             } else {
-                console.error("Error al registrar usuario");
+                console.error("Error al iniciar sesión");
                 setCorreo("");
                 setPassword("");
             }
@@ -43,32 +43,32 @@ export function Register() {
                 <div className="col-md-6">
                     <div className="card">
                         <div className="card-header">
-                            <h1 className="text-center">Registro</h1>
+                            <h1 className="text-center">Login</h1>
                         </div>
                         <div className="card-body">
-                            <form onSubmit={registrar}>
+                            <form onSubmit={login}>
                                 <div className="form-group">
-                                    <label htmlFor="correoRegistrar">Correo</label>
+                                    <label htmlFor="correoIniciar">Correo</label>
                                     <input
                                         type="text"
-                                        id="correoRegistrar"
+                                        id="correoIniciar"
                                         className="form-control"
                                         value={correo}
                                         onChange={(e) => setCorreo(e.target.value)}
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="passwordRegistrar">Contraseña</label>
+                                    <label htmlFor="passwordIniciar">Password</label>
                                     <input
                                         type="password"
-                                        id="passwordRegistrar"
+                                        id="passwordIniciar"
                                         className="form-control"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                     />
                                 </div>
                                 <br />
-                                <button type="submit" className="btn btn-danger">Registrar Usuario</button>
+                                <button type="submit" className="btn btn-danger">Iniciar Sesión</button>
                             </form>
                         </div>
                     </div>
