@@ -2,6 +2,8 @@ import dotenv from "dotenv";
 import express from "express";
 import versionRoutes from "express-routes-versioning";
 
+import user from "./routers/user.js";
+
 dotenv.config();
 const app = express();
 
@@ -15,5 +17,13 @@ app.use((req, res, next) => {
 });
 
 app.listen(config.port, config.hostname, () => {
-    console.log(`Servidor iniciado en http://${config.hostname}:${config.port}`);
+    console.log(`http://${config.hostname}:${config.port}`);
   });
+
+app.use("/user",
+
+  versionRoute({
+    "1.0.0": user
+  })
+  
+)
