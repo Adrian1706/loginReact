@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 export function Register() {
+    const [correo, setCorreo] = useState("");
+    const [password, setPassword] = useState(""); 
+
     const registrar = async (e) => {
         e.preventDefault();
-        let correo = document.querySelector("#correoRegistrar").value;
-        let password = document.querySelector("#passwordRegistrar").value;
         let registrarse = { correo, password };
-
+        
         const requestOptions = {
             method: "POST",
             headers: {
@@ -21,11 +22,18 @@ export function Register() {
             if (res.ok) {
                 const jotason = await res.json();
                 console.log(jotason);
+                alert("Se agregó el usuario con éxito");
+                setCorreo("");
+                setPassword("");
             } else {
                 console.error("Error al registrar usuario");
+                setCorreo("");
+                setPassword("");
             }
         } catch (error) {
             console.error("Error en la solicitud:", error);
+            setCorreo("");
+            setPassword("");
         }
     }
 
@@ -34,9 +42,19 @@ export function Register() {
             <h1>Register</h1>
             <form onSubmit={registrar}>
                 <label htmlFor="correoRegistrar">Correo</label><br />
-                <input type="text" id="correoRegistrar" /><br /><br />
+                <input
+                    type="text"
+                    id="correoRegistrar"
+                    value={correo}
+                    onChange={(e) => setCorreo(e.target.value)}
+                /><br /><br />
                 <label htmlFor="passwordRegistrar">Password</label><br />
-                <input type="password" id="passwordRegistrar" /><br /><br />
+                <input
+                    type="password"
+                    id="passwordRegistrar"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)} // Actualizar el estado de contraseña
+                /><br /><br />
                 <button type="submit">Registrar User</button>
             </form>
         </div>

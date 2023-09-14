@@ -1,11 +1,13 @@
 import dotenv from "dotenv";
 import express from "express";
 import versionRoutes from "express-routes-versioning";
+import cors from "cors";
 
 import user from "./routers/user.js";
 
 dotenv.config();
 const app = express();
+app.use(cors()) 
 
 app.use(express.json());
 const config = JSON.parse(process.env.MY_SERVER);
