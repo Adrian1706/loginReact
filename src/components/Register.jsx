@@ -42,20 +42,10 @@ export function Register() {
             <h1>Register</h1>
             <form onSubmit={registrar}>
                 <label htmlFor="correoRegistrar">Correo</label><br />
-                <input
-                    type="text"
-                    id="correoRegistrar"
-                    value={correo}
-                    onChange={(e) => setCorreo(e.target.value)}
-                /><br /><br />
+                <input type="text" id="correoRegistrar" value={correo} onChange={(e) => setCorreo(e.target.value)}/><br /><br />
                 <label htmlFor="passwordRegistrar">Password</label><br />
-                <input
-                    type="password"
-                    id="passwordRegistrar"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)} // Actualizar el estado de contraseña
-                /><br /><br />
-                <button type="submit">Registrar User</button>
+                <input type="password" id="passwordRegistrar" value={password} onChange={(e) => setPassword(e.target.value)}/><br /><br />
+                <button type="submit">Registrar Usuario</button>
             </form>
         </div>
     )
