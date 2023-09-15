@@ -26,7 +26,7 @@ export function Login() {
                 setCorreo("");
                 setPassword("");
             } else {
-                console.error("Error al iniciar sesión");
+                alert("Correo o contraseña incorrecta");
                 setCorreo("");
                 setPassword("");
             }

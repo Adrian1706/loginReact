@@ -4,23 +4,20 @@ import { Router } from "express";
 const login = Router();
 const db = await con();
 
-login.post("/", async(req, res)=>{
-
-    const { dato } = req.body;
+login.post("/", async (req, res) => {
+  const { correo, password } = req.body;
 
   try {
-    const logins = db.collection("user");
+      const logins = db.collection("user");
+      const usuario = await logins.findOne({ correo, password });
 
-    const existe = await logins.findOne({ correo: dato }); 
-
-    if (existe) {
-      res.status(200).json({ mensaje: "El dato existe en la base de datos" });
-    } else {
-      res.status(404).json({ mensaje: "El dato no existe en la base de datos" });
-    }
+      if (usuario) {
+          res.status(200).send({ mensaje: "Inicio de sesión correcto" });
+      } else {
+          res.status(401).send({ mensaje: "Esta cuenta no existe, debes registrarte" });
+      }
   } catch (error) {
-    console.error("Error en la consulta a la base de datos:", error);
-    res.status(500).json({ mensaje: "Error en la consulta a la base de datos" });
+      res.status(500).json({ mensaje: "Error en la consulta a la base de datos" });
   }
 });
 
